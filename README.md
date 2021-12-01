@@ -8,13 +8,13 @@ No template existe também testes que ajudaram no desenvolvimento do app.
 
 # Funcionalidades - API
 
-Cria um usuário com `name` e `username`, Faz o CRUD de *todos*:
+Cria um usuário com `name` e `username`, e faz o CRUD de *todos*:
 
-- Criar um novo *todo*;
-- Listar todos os *todos*;
-- Alterar o `title` e `deadline` de um *todo* existente;
-- Marcar um *todo* como feito;
-- Excluir um *todo*;
+- Cria um novo *todo*;
+- Lista todos os *todos*;
+- Altera o `title` e `deadline` de um *todo* existente;
+- Marca um *todo* como feito;
+- Exclui um *todo*;
 
 # Executado nas Rotas
 

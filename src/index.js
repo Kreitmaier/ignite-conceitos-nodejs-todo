@@ -47,17 +47,15 @@ app.post('/users', (request, response) => {
 });
 
 //list all users
-//app.get('/users', (request, response) => {
-// return response.status(201).json(users);
-//});
+app.get('/users', (request, response) => {
+return response.status(201).json(users);
+});
 
 //list todos of user
 app.get('/todos', checksExistsUserAccount, (request, response) => {
   const { user } = request;
 
-
-
-  return response.status(201).json(user.todos);
+  return response.json(user.todos);
 });
 
 //create a todo to user
@@ -69,12 +67,13 @@ app.post('/todos', checksExistsUserAccount, (request, response) => {
     id: uuidv4(),
     title: title,
     done: false,
-    deadline: deadline,
+    deadline: new Date(deadline),
     created_at: new Date()
   }; 
 
   user.todos.push(todoCreate);
-  response.status(201).send();  
+
+  return response.status(201).json(todoCreate);  
 
 });
 
@@ -92,7 +91,7 @@ app.put('/todos/:id', checksExistsUserAccount, (request, response) => {
 
   const todoUpdated = { ...user.todos[todoIndex], 
     title: title,
-    deadline: deadline
+    deadline: new Date(deadline)
   }
 
   user.todos = [
@@ -101,7 +100,7 @@ app.put('/todos/:id', checksExistsUserAccount, (request, response) => {
     ...user.todos.slice(todoIndex + 1),
   ];
 
-  return response.status(201).send();
+  return response.json(todoUpdated);
 });
 
 //change todo to done
@@ -125,8 +124,7 @@ app.patch('/todos/:id/done', checksExistsUserAccount, (request, response) => {
     ...user.todos.slice(todoIndex + 1),
   ];
 
-  return response.status(201).send();
-
+  return response.json(todoUpdated);
 });
 
 //delete a todo
